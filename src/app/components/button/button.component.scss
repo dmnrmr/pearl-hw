@@ -1,7 +1,11 @@
-@import '../../../styles/mixins';
+@import "../../../styles/mixins";
 
 :host {
   display: block;
+
+  ::ng-deep .button:disabled svg {
+    fill: #808080;
+  }
 }
 
 .button {
@@ -12,6 +16,10 @@
   outline: none;
   padding: 0;
   cursor: pointer;
+
+  &:disabled {
+    cursor: no-drop;
+  }
 
   &__content {
     margin-right: 0.25rem;

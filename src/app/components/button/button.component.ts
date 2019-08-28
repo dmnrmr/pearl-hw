@@ -10,6 +10,7 @@ export class ButtonComponent {
   @Output() private readonly handleClick = new EventEmitter<void>();
 
   @Input() public label: string;
+  @Input() public isDisabled: boolean;
 
   public onClick(): void {
     this.handleClick.emit();
