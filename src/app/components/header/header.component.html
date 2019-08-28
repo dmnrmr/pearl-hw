@@ -1,0 +1,41 @@
+<header class="header">
+  <div class="header__title">
+      <div class="header__title-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="none" d="M0 0h24v24H0V0z"/>
+          <path d="M16 4H4c-1.1 0-2 .9-2 2v12.01c0 1.1.9 1.99 2 1.99h16c1.1 0 2-.9 2-2v-8l-6-6zM4 18.01V6h11v5h5v7.01H4z"/>
+        </svg>
+      </div>
+
+      <h1 class="header__title-text">Stickies app</h1>
+  </div>
+
+  <div class="header__content">
+    <div class="header__content-number-of-notes">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="none" d="M0 0h24v24H0V0z"/>
+        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+      </svg>
+
+      <span>{{ numberOfNotes }}</span>
+    </div>
+
+    <div class="header__add-note-button">
+      <prl-button label="Add note" (handleClick)="onAddNote()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="none" d="M0 0h24v24H0V0z"/>
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+      </prl-button>
+    </div>
+
+    <div class="header__remove-all-button">
+      <prl-button label="Delete all notes" (handleClick)="onRemoveAllNotes()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="none" d="M0 0h24v24H0V0z"/>
+          <path d="M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.12 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"/>
+        </svg>
+      </prl-button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,42 @@
+@import '../../../styles/mixins';
+
+:host {
+  display: block;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    @include v-center;
+
+    &-icon {
+      @include v-center;
+
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+    }
+  }
+
+  &__content {
+    @include v-center;
+
+    justify-content: flex-end;
+    flex-grow: 1;
+
+    * {
+      margin-left: 0.5rem;
+    }
+
+    &-number-of-notes {
+      @include v-center;
+
+      align-items: center;
+    }
+  }
+}

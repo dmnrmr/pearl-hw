@@ -1,3 +1,23 @@
+// Colors
+$background-color: #13b2fb;
+$dot-color: #3882e8;
+
+// Dimensions
+$dot-size: 2px;
+$dot-space: 22px;
+
 :host {
   display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, $background-color ($dot-space - $dot-size), transparent 1%) center,
+    linear-gradient($background-color ($dot-space - $dot-size), transparent 1%) center,
+    $dot-color;
+  background-size: $dot-space $dot-space;
 }

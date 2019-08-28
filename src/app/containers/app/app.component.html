@@ -1,1 +1,9 @@
-<h1>Pearl hw</h1>
+<div class="app">
+  <prl-header
+    [numberOfNotes]="0"
+    [noteColors]="[]"
+    (handleAddNote)="onAddNote()"
+    (handleRemoveAllNotes)="onRemoveAllNotes()"
+    (handleSelectNoteColor)="onSelectNoteColor($event)"
+  ></prl-header>
+</div>
