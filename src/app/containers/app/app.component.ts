@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { NoteColor } from '../../models';
 
 @Component({
   selector: 'prl-root',
@@ -7,6 +8,27 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
+  public noteColors: NoteColor[] = [
+    {
+      id: 'blue',
+      code: '#00ccff',
+      label: 'Blue',
+      labelColor: '#000000'
+    },
+    {
+      id: 'yellow',
+      code: '#ffe96a',
+      label: 'Yellow',
+      labelColor: '#000000'
+    },
+    {
+      id: 'black',
+      code: '#000000',
+      label: 'Black',
+      labelColor: '#ffffff'
+    }
+  ];
+
   public onAddNote(): void {
     // tslint:disable-next-line
     console.log('** Add note');

@@ -7,12 +7,12 @@ import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
-  @Output() private readonly handleClick = new EventEmitter<void>();
+  @Output() private readonly handleClick = new EventEmitter<MouseEvent>();
 
   @Input() public label: string;
   @Input() public isDisabled: boolean;
 
-  public onClick(): void {
-    this.handleClick.emit();
+  public onClick(event: MouseEvent): void {
+    this.handleClick.emit(event);
   }
 }

@@ -37,5 +37,12 @@
         </svg>
       </prl-button>
     </div>
+
+    <div class="header__colors">
+      <prl-color-selector
+        [availableColors]="noteColors"
+        (handleSelectNoteColor)="onSelectNoteColor($event)"
+      ></prl-color-selector>
+    </div>
   </div>
 </header>
