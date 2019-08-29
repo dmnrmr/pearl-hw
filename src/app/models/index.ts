@@ -1,4 +1,7 @@
-export interface Note { }
+export interface Note {
+  content?: string;
+  title?: string;
+}
 
 export interface NoteColor {
   code: string;
