@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Note } from '../models';
+import { Note, NoteColor } from '../models';
 
 @Injectable()
 export class NoteStoreService {
   public notes: {
-    [key: number]: Note;
+    [key: string]: Note;
   } = {};
+  public selectedNoteId: string;
 
   private makeEmptyNote(): Note {
-    return {};
+    return {
+      backgroundColor: '#ffffff',
+      textColor: '#000000'
+    };
   }
 
   public addNote(): void {
-    const id = new Date().getTime();
+    const id = String(new Date().getTime());
 
     this.notes = {
       ...this.notes,
@@ -26,5 +30,22 @@ export class NoteStoreService {
 
   public removeAllNotes(): void {
     this.notes = {};
+  }
+
+  public updateNoteColors({ code, textColor }: NoteColor): void {
+    if (!this.selectedNoteId) {
+      return;
+    }
+
+    const selectedNote = this.notes[this.selectedNoteId];
+
+    this.notes = {
+      ...this.notes,
+      [this.selectedNoteId]: {
+        ...selectedNote,
+        backgroundColor: code,
+        textColor
+      }
+    }
   }
 }

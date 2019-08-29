@@ -1,4 +1,6 @@
 export interface Note {
+  backgroundColor: string;
+  textColor: string;
   content?: string;
   title?: string;
 }
@@ -7,7 +9,7 @@ export interface NoteColor {
   code: string;
   id: string;
   label: string;
-  labelColor: string;
+  textColor: string;
 }
 
 export enum FormId {

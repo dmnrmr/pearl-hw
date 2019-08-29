@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Note, NoteColor } from '../../models';
 import { NoteStoreService } from '../../services/store.service';
 
@@ -16,23 +16,23 @@ export class AppComponent {
       id: 'blue',
       code: '#00ccff',
       label: 'Blue',
-      labelColor: '#000000'
+      textColor: '#000000'
     },
     {
       id: 'yellow',
       code: '#ffe96a',
       label: 'Yellow',
-      labelColor: '#000000'
+      textColor: '#000000'
     },
     {
       id: 'black',
       code: '#000000',
       label: 'Black',
-      labelColor: '#ffffff'
+      textColor: '#ffffff'
     }
   ];
 
-  constructor(private storeService: NoteStoreService) { }
+  constructor(public storeService: NoteStoreService) { }
 
   public onAddNote(): void {
     this.storeService.addNote();
@@ -46,9 +46,22 @@ export class AppComponent {
     this.storeService.removeAllNotes();
   }
 
-  public onSelectNoteColor(colorId: string): void {
-    // tslint:disable-next-line
-    console.log('** Select color', colorId);
+  public onSelectNoteColor(color: NoteColor): void {
+    this.storeService.updateNoteColors(color);
+  }
+
+  public onNoteSelect(event: MouseEvent, id: string): void {
+    event.stopPropagation();
+
+    if (this.storeService.selectedNoteId === id) {
+      return;
+    }
+
+    this.storeService.selectedNoteId = id;
+  }
+
+  public onNoteDeselect(): void {
+    this.storeService.selectedNoteId = undefined;
   }
 
   public trackByNoteId(_: number, [id]: NoteEntry): string {
@@ -61,5 +74,9 @@ export class AppComponent {
 
   get hasNotes(): boolean {
     return this.notes.length > 0;
+  }
+
+  get isNoteSelected(): boolean {
+    return !!this.storeService.selectedNoteId;
   }
 }

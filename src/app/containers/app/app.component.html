@@ -1,7 +1,8 @@
-<div class="app">
+<div class="app" (click)="onNoteDeselect()">
   <prl-header
     [numberOfNotes]="notes.length"
     [noteColors]="noteColors"
+    [isColorSelectorEnabled]="isNoteSelected"
     (handleAddNote)="onAddNote()"
     (handleRemoveAllNotes)="onRemoveAllNotes()"
     (handleSelectNoteColor)="onSelectNoteColor($event)"
@@ -13,6 +14,7 @@
         *ngFor="let noteEntry of notes; trackBy: trackByNoteId"
         [note]="noteEntry[1]"
         (handleRemoveNote)="onRemoveNote(noteEntry[0])"
+        (click)="onNoteSelect($event, noteEntry[0])"
       ></prl-note>
     </ng-container>
   </section>

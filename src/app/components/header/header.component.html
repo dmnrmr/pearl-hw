@@ -41,6 +41,7 @@
     <div class="header__colors">
       <prl-color-selector
         [availableColors]="noteColors"
+        [isColorSelectorEnabled]="isColorSelectorEnabled"
         (handleSelectNoteColor)="onSelectNoteColor($event)"
       ></prl-color-selector>
     </div>

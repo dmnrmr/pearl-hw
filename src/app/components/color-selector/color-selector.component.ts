@@ -19,9 +19,10 @@ import { NoteColor } from '../../models';
 export class ColorSelectorComponent implements OnInit, OnDestroy {
   constructor(private cdr: ChangeDetectorRef) { }
 
-  @Output() private handleSelectNoteColor = new EventEmitter<string>();
+  @Output() private handleSelectNoteColor = new EventEmitter<NoteColor>();
 
   @Input() public availableColors: NoteColor[] = [];
+  @Input() public isColorSelectorEnabled: boolean;
 
   public isColorMenuVisible: boolean;
 
@@ -51,9 +52,9 @@ export class ColorSelectorComponent implements OnInit, OnDestroy {
     this.isColorMenuVisible = !this.isColorMenuVisible;
   }
 
-  public onSelectNoteColor(colorId: string): void {
+  public onSelectNoteColor(color: NoteColor): void {
     this.closeColorMenu();
-    this.handleSelectNoteColor.emit(colorId);
+    this.handleSelectNoteColor.emit(color);
   }
 
   public trackByColorCode(_: number, { code }: NoteColor): string {

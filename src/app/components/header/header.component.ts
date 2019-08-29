@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { NoteColor } from '../../models';
 
 @Component({
@@ -10,10 +10,11 @@ import { NoteColor } from '../../models';
 export class HeaderComponent {
   @Output() private handleAddNote = new EventEmitter<void>();
   @Output() private handleRemoveAllNotes = new EventEmitter<void>();
-  @Output() private handleSelectNoteColor = new EventEmitter<string>();
+  @Output() private handleSelectNoteColor = new EventEmitter<NoteColor>();
 
   @Input() public numberOfNotes: number = 0;
   @Input() public noteColors: NoteColor[] = [];
+  @Input() public isColorSelectorEnabled: boolean;
 
   public onAddNote(): void {
     this.handleAddNote.emit();
@@ -23,7 +24,7 @@ export class HeaderComponent {
     this.handleRemoveAllNotes.emit();
   }
 
-  public onSelectNoteColor(colorId: string): void {
-    this.handleSelectNoteColor.emit(colorId);
+  public onSelectNoteColor(color: NoteColor): void {
+    this.handleSelectNoteColor.emit(color);
   }
 }

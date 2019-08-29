@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'prl-button',
@@ -11,6 +11,7 @@ export class ButtonComponent {
 
   @Input() public label: string;
   @Input() public isDisabled: boolean;
+  @Input() public textColor?: string = '#000000';
 
   public onClick(event: MouseEvent): void {
     this.handleClick.emit(event);
