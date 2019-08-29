@@ -9,3 +9,8 @@ export interface NoteColor {
   label: string;
   labelColor: string;
 }
+
+export enum FormId {
+  Title = 'title',
+  Content = 'content'
+}

@@ -1,5 +1,29 @@
-<div class="note">
-  <h2 class="note__title">{{ note.title }}</h2>
+<form class="note" [formGroup]="form">
+  <input
+    type="text"
+    class="note__title"
+    placeholder="A place for a title"
+    maxlength="16"
+    [formControlName]="FormId.Title"
+  />
 
-  <div class="note__content">{{ note.content }}</div>
-</div>
+  <hr class="note__separator"/>
+
+  <textarea
+    class="note__content"
+    rows="8"
+    cols="31"
+    wrap="hard"
+    placeholder="A place for a message"
+    [formControlName]="FormId.Content"
+  ></textarea>
+
+  <div class="note__actions">
+    <prl-button label="Remove this note" (handleClick)="onRemoveNote()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="none" d="M0 0h24v24H0V0z"/>
+        <path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/>
+      </svg>
+    </prl-button>
+  </div>
+</form>

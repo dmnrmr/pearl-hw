@@ -38,6 +38,10 @@ export class AppComponent {
     this.storeService.addNote();
   }
 
+  public onRemoveNote(id: string): void {
+    this.storeService.removeNote(id);
+  }
+
   public onRemoveAllNotes(): void {
     this.storeService.removeAllNotes();
   }

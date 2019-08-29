@@ -20,7 +20,7 @@ export class NoteStoreService {
     }
   }
 
-  public removeNote(id: number): void {
+  public removeNote(id: string): void {
     delete this.notes[id];
   }
 

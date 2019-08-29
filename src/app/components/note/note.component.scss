@@ -6,7 +6,35 @@
   padding: 2rem;
   background-color: white;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.11);
-  width: 250px;
-  height: 250px;
   overflow: hidden;
+
+  &__title {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    margin-bottom: 10px;
+    outline: none;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  &__separator {
+    border-top: 1px solid rgba(0, 0, 0, 0.17);
+    margin: 12px 0;
+  }
+
+  &__content {
+    width: 100%;
+    word-wrap: break-word;
+    background-color: transparent;
+    resize: none;
+    border: none;
+    outline: none;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+  }
 }
