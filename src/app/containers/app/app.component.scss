@@ -20,4 +20,9 @@ $dot-space: 22px;
     linear-gradient($background-color ($dot-space - $dot-size), transparent 1%) center,
     $dot-color;
   background-size: $dot-space $dot-space;
+
+  &__content {
+    display: flex;
+    padding: 5rem;
+  }
 }

@@ -1,5 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NoteColor } from '../../models';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Note, NoteColor } from '../../models';
+import { NoteStoreService } from '../../services/store.service';
+
+type NoteEntry = [string, Note];
 
 @Component({
   selector: 'prl-root',
@@ -29,18 +32,30 @@ export class AppComponent {
     }
   ];
 
+  constructor(private storeService: NoteStoreService) { }
+
   public onAddNote(): void {
-    // tslint:disable-next-line
-    console.log('** Add note');
+    this.storeService.addNote();
   }
 
   public onRemoveAllNotes(): void {
-    // tslint:disable-next-line
-    console.log('** Remove all notes');
+    this.storeService.removeAllNotes();
   }
 
   public onSelectNoteColor(colorId: string): void {
     // tslint:disable-next-line
     console.log('** Select color', colorId);
+  }
+
+  public trackByNoteId(_: number, [id]: NoteEntry): string {
+    return id;
+  }
+
+  get notes(): NoteEntry[] {
+    return Object.entries(this.storeService.notes);
+  }
+
+  get hasNotes(): boolean {
+    return this.notes.length > 0;
   }
 }

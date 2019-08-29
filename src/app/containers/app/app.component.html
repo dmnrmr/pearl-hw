@@ -6,4 +6,10 @@
     (handleRemoveAllNotes)="onRemoveAllNotes()"
     (handleSelectNoteColor)="onSelectNoteColor($event)"
   ></prl-header>
+
+  <section class="app__content">
+    <ng-container *ngIf="hasNotes">
+      <prl-note *ngFor="let noteEntry of notes; trackBy: trackByNoteId" [note]="noteEntry[1]"></prl-note>
+    </ng-container>
+  </section>
 </div>

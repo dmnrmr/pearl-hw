@@ -3,7 +3,7 @@ import { Note } from '../models';
 
 @Injectable()
 export class NoteStoreService {
-  private notes: {
+  public notes: {
     [key: number]: Note;
   } = {};
 
@@ -22,5 +22,9 @@ export class NoteStoreService {
 
   public removeNote(id: number): void {
     delete this.notes[id];
+  }
+
+  public removeAllNotes(): void {
+    this.notes = {};
   }
 }
