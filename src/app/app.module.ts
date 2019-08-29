@@ -1,9 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './containers/app/app.component';
-import { HeaderComponent } from './components/header/header.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { ButtonComponent } from './components/button/button.component';
 import { ColorSelectorComponent } from './components/color-selector/color-selector.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AppComponent } from './containers/app/app.component';
+import { NoteStoreService } from './services/store.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { ColorSelectorComponent } from './components/color-selector/color-select
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [NoteStoreService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
