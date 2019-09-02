@@ -32,7 +32,9 @@ export class NoteComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.form = this.formService.buildForm();
+    const { title, content } = this.note;
+
+    this.form = this.formService.buildForm(title, content);
     this.onNoteTextValueChange();
   }
 

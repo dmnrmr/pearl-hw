@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Note, NoteColor, NoteTextValue } from '../models';
+import { Note, NoteColor, NoteEntries, NoteTextValue } from '../models';
+import { NoteStorageService } from './storage.service';
 
 @Injectable()
 export class NoteStoreService {
-  public notes: {
-    [key: string]: Note;
-  } = {};
+  public notes: NoteEntries = {};
   public selectedNoteId: string;
+
+  constructor(private storageService: NoteStorageService) { }
+
+  private updateState(currentState: NoteEntries, changes?: any): void {
+    this.notes = {
+      ...currentState,
+      ...changes
+    }
+
+    this.storageService.storeNotes(this.notes);
+  }
 
   private makeEmptyNote(): Note {
     return {
@@ -15,21 +25,26 @@ export class NoteStoreService {
     };
   }
 
+  public setInitialState(notes: NoteEntries): void {
+    this.notes = notes || {};
+  }
+
   public addNote(): void {
     const id = String(new Date().getTime());
 
-    this.notes = {
-      ...this.notes,
+    this.updateState(this.notes, {
       [id]: this.makeEmptyNote()
-    }
+    });
   }
 
   public removeNote(id: string): void {
     delete this.notes[id];
+
+    this.updateState(this.notes);
   }
 
   public removeAllNotes(): void {
-    this.notes = {};
+    this.updateState({});
   }
 
   public updateNoteColors({ code, textColor }: NoteColor): void {
@@ -39,25 +54,23 @@ export class NoteStoreService {
 
     const selectedNote = this.notes[this.selectedNoteId];
 
-    this.notes = {
-      ...this.notes,
+    this.updateState(this.notes, {
       [this.selectedNoteId]: {
         ...selectedNote,
         backgroundColor: code,
         textColor
       }
-    }
+    });
   }
 
   public updateNoteTextValues(value: NoteTextValue, noteId: string): void {
     const selectedNote = this.notes[noteId];
 
-    this.notes = {
-      ...this.notes,
+    this.updateState(this.notes, {
       [noteId]: {
         ...selectedNote,
         ...value
       }
-    }
+    });
   }
 }

@@ -6,10 +6,10 @@ import { FormId } from '../models';
 export class NoteFormService {
   constructor(private fb: FormBuilder) { }
 
-  public buildForm(): FormGroup {
+  public buildForm(title: string, content: string): FormGroup {
     return this.fb.group({
-      [FormId.Title]: null,
-      [FormId.Content]: null
+      [FormId.Title]: title,
+      [FormId.Content]: content
     });
   }
 }

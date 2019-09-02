@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Note, NoteColor, NoteTextValue } from '../../models';
+import { NoteStorageService } from '../../services/storage.service';
 import { NoteStoreService } from '../../services/store.service';
 
 type NoteEntry = [string, Note];
@@ -10,7 +11,7 @@ type NoteEntry = [string, Note];
   styleUrls: ['app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public noteColors: NoteColor[] = [
     {
       id: 'blue',
@@ -32,7 +33,16 @@ export class AppComponent {
     }
   ];
 
-  constructor(public storeService: NoteStoreService) { }
+  constructor(
+    public storeService: NoteStoreService,
+    public storageService: NoteStorageService
+  ) { }
+
+  public ngOnInit(): void {
+    const notes = this.storageService.getNotes();
+
+    this.storeService.setInitialState(notes);
+  }
 
   public onAddNote(): void {
     this.storeService.addNote();

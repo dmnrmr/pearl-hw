@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NoteComponent } from './components/note/note.component';
 import { AppComponent } from './containers/app/app.component';
 import { NoteFormService } from './services/form.service';
+import { NoteStorageService } from './services/storage.service';
 import { NoteStoreService } from './services/store.service';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NoteStoreService } from './services/store.service';
   ],
   providers: [
     NoteFormService,
+    NoteStorageService,
     NoteStoreService
   ],
   bootstrap: [AppComponent]

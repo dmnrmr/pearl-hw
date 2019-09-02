@@ -13,6 +13,10 @@ export interface Note extends NoteTextValue {
   textColor: string;
 }
 
+export interface NoteEntries {
+  [key: string]: Note;
+}
+
 export interface NoteColor {
   code: string;
   id: string;
