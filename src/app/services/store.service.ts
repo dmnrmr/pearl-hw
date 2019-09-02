@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Note, NoteColor } from '../models';
+import { Note, NoteColor, NoteTextValue } from '../models';
 
 @Injectable()
 export class NoteStoreService {
@@ -45,6 +45,18 @@ export class NoteStoreService {
         ...selectedNote,
         backgroundColor: code,
         textColor
+      }
+    }
+  }
+
+  public updateNoteTextValues(value: NoteTextValue, noteId: string): void {
+    const selectedNote = this.notes[noteId];
+
+    this.notes = {
+      ...this.notes,
+      [noteId]: {
+        ...selectedNote,
+        ...value
       }
     }
   }

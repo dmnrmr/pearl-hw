@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { Note, NoteColor } from '../../models';
+import { Note, NoteColor, NoteTextValue } from '../../models';
 import { NoteStoreService } from '../../services/store.service';
 
 type NoteEntry = [string, Note];
@@ -62,6 +62,10 @@ export class AppComponent {
 
   public onNoteDeselect(): void {
     this.storeService.selectedNoteId = undefined;
+  }
+
+  public onNoteTextValueChange(value: NoteTextValue, noteId: string): void {
+    this.storeService.updateNoteTextValues(value, noteId);
   }
 
   public trackByNoteId(_: number, [id]: NoteEntry): string {

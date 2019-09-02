@@ -1,8 +1,16 @@
-export interface Note {
+export enum FormId {
+  Title = 'title',
+  Content = 'content'
+}
+
+export interface NoteTextValue {
+  [FormId.Title]?: null | string;
+  [FormId.Content]?: null | string;
+}
+
+export interface Note extends NoteTextValue {
   backgroundColor: string;
   textColor: string;
-  content?: string;
-  title?: string;
 }
 
 export interface NoteColor {
@@ -10,9 +18,4 @@ export interface NoteColor {
   id: string;
   label: string;
   textColor: string;
-}
-
-export enum FormId {
-  Title = 'title',
-  Content = 'content'
 }
