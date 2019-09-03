@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,6 +21,7 @@ import { NoteStoreService } from './services/store.service';
   ],
   imports: [
     BrowserModule,
+    DragDropModule,
     ReactiveFormsModule
   ],
   providers: [

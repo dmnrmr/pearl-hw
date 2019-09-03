@@ -8,7 +8,14 @@ export interface NoteTextValue {
   [FormId.Content]?: null | string;
 }
 
-export interface Note extends NoteTextValue {
+export interface NotePosition {
+  position: {
+    x: number;
+    y: number;
+  }
+}
+
+export interface Note extends NoteTextValue, NotePosition {
   backgroundColor: string;
   textColor: string;
 }

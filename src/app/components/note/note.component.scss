@@ -1,11 +1,13 @@
 :host {
   display: block;
+  height: 0;
 }
 
 .note {
   padding: 2rem;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.11);
   overflow: hidden;
+  cursor: move;
 
   &__title {
     width: 100%;

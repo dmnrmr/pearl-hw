@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Note, NoteColor, NoteEntries, NoteTextValue } from '../models';
+import { Note, NoteColor, NoteEntries, NotePosition, NoteTextValue } from '../models';
 import { NoteStorageService } from './storage.service';
 
 @Injectable()
@@ -21,7 +21,11 @@ export class NoteStoreService {
   private makeEmptyNote(): Note {
     return {
       backgroundColor: '#ffffff',
-      textColor: '#000000'
+      textColor: '#000000',
+      position: {
+        x: 0,
+        y: 0
+      }
     };
   }
 
@@ -63,13 +67,13 @@ export class NoteStoreService {
     });
   }
 
-  public updateNoteTextValues(value: NoteTextValue, noteId: string): void {
+  public updateNoteValues(update: NoteTextValue | NotePosition, noteId: string): void {
     const selectedNote = this.notes[noteId];
 
     this.updateState(this.notes, {
       [noteId]: {
         ...selectedNote,
-        ...value
+        ...update
       }
     });
   }

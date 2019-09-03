@@ -1,4 +1,12 @@
-<form class="note" [formGroup]="form" [style.background-color]="note.backgroundColor">
+<form
+  class="note"
+  [formGroup]="form"
+  cdkDrag
+  cdkDragBoundary=".app__content"
+  [cdkDragFreeDragPosition]="note.position"
+  [style.background-color]="note.backgroundColor"
+  (cdkDragEnded)="onDragEnded($event)"
+>
   <input
     type="text"
     class="note__title"

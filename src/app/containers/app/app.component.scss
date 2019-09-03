@@ -1,8 +1,5 @@
-// Colors
 $background-color: #13b2fb;
 $dot-color: #3882e8;
-
-// Dimensions
 $dot-size: 2px;
 $dot-space: 22px;
 
@@ -20,9 +17,18 @@ $dot-space: 22px;
     linear-gradient($background-color ($dot-space - $dot-size), transparent 1%) center,
     $dot-color;
   background-size: $dot-space $dot-space;
+  display: flex;
+  flex-direction: column;
 
   &__content {
     display: flex;
-    padding: 5rem;
+    align-items: baseline;
+    position: relative;
+    height: 100%;
+    margin: 2rem;
   }
+}
+
+prl-note {
+  position: absolute;
 }

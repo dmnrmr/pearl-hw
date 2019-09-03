@@ -15,6 +15,7 @@
         [note]="noteEntry[1]"
         (handleRemoveNote)="onRemoveNote(noteEntry[0])"
         (handleNoteTextValueChange)="onNoteTextValueChange($event, noteEntry[0])"
+        (handleNotePositionChange)="onNotePositionChange($event, noteEntry[0])"
         (click)="onNoteSelect($event, noteEntry[0])"
       ></prl-note>
     </ng-container>

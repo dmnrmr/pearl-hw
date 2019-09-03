@@ -1,8 +1,9 @@
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { FormId, Note, NoteTextValue } from '../../models';
+import { FormId, Note, NotePosition, NoteTextValue } from '../../models';
 import { NoteFormService } from '../../services/form.service';
 
 @Component({
@@ -14,6 +15,7 @@ import { NoteFormService } from '../../services/form.service';
 export class NoteComponent implements OnInit, OnDestroy {
   @Output() private readonly handleRemoveNote = new EventEmitter<void>();
   @Output() private readonly handleNoteTextValueChange = new EventEmitter<NoteTextValue>();
+  @Output() private readonly handleNotePositionChange = new EventEmitter<NotePosition>();
 
   private onDestroy = new Subject();
 
@@ -40,6 +42,12 @@ export class NoteComponent implements OnInit, OnDestroy {
 
   public onRemoveNote(): void {
     this.handleRemoveNote.emit();
+  }
+
+  public onDragEnded(event: CdkDragEnd): void {
+    const position = event.source.getFreeDragPosition();
+
+    this.handleNotePositionChange.emit({ position });
   }
 
   public ngOnDestroy(): void {

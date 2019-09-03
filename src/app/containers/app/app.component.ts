@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Note, NoteColor, NoteTextValue } from '../../models';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Note, NoteColor, NotePosition, NoteTextValue } from '../../models';
 import { NoteStorageService } from '../../services/storage.service';
 import { NoteStoreService } from '../../services/store.service';
 
@@ -75,7 +75,11 @@ export class AppComponent implements OnInit {
   }
 
   public onNoteTextValueChange(value: NoteTextValue, noteId: string): void {
-    this.storeService.updateNoteTextValues(value, noteId);
+    this.storeService.updateNoteValues(value, noteId);
+  }
+
+  public onNotePositionChange(position: NotePosition, noteId: string): void {
+    this.storeService.updateNoteValues(position, noteId);
   }
 
   public trackByNoteId(_: number, [id]: NoteEntry): string {
