@@ -1,5 +1,6 @@
 import { Shallow } from 'shallow-render';
 import { Rendering } from 'shallow-render/dist/lib/models/rendering';
+import { noteColors } from '../../../fixtures';
 import { AppModule } from '../../app.module';
 import { NoteColor } from '../../models';
 import { ButtonComponent } from '../button/button.component';
@@ -17,33 +18,13 @@ interface ShallowMockArguments {
   isColorSelectorEnabled?: boolean;
 }
 
-const DEFAULT_COLORS: NoteColor[] = [
-  {
-    id: 'blue',
-    code: '#00ccff',
-    label: 'Blue',
-    textColor: '#000000'
-  },
-  {
-    id: 'yellow',
-    code: '#ffe96a',
-    label: 'Yellow',
-    textColor: '#000000'
-  },
-  {
-    id: 'black',
-    code: '#000000',
-    label: 'Black',
-    textColor: '#ffffff'
-  }
-];
 const eventMock = {
   stopPropagation: jasmine.createSpy('event.stopPropagation')
 } as any as MouseEvent;
 
 const getShallowMock = async ({
   shallow,
-  availableColors = DEFAULT_COLORS,
+  availableColors = noteColors,
   isColorSelectorEnabled = true
 }: ShallowMockArguments): Promise<Rendering<ColorSelectorComponent, ShallowMockBindings>> => {
   const handleSelectNoteColor = (_: NoteColor): void => void 0;
@@ -66,7 +47,7 @@ const getShallowMock = async ({
   );
 };
 
-describe('Button', () => {
+describe('Color selector', () => {
   let shallow: Shallow<ColorSelectorComponent>;
 
   beforeEach(() => {
@@ -106,7 +87,7 @@ describe('Button', () => {
 
     const colorItemRefs = find('.color-selector__menu-item');
 
-    expect(colorItemRefs.length).toBe(DEFAULT_COLORS.length);
+    expect(colorItemRefs.length).toBe(noteColors.length);
   });
 
   it('should set `background-color` on color item', async () => {
@@ -131,7 +112,7 @@ describe('Button', () => {
 
   it('should select color on color item click', async () => {
     const { instance, find } = await getShallowMock({ shallow });
-    const [resultColor] = DEFAULT_COLORS;
+    const [resultColor] = noteColors;
 
     instance.toggleColorMenu(eventMock);
 
@@ -146,7 +127,7 @@ describe('Button', () => {
 
   it('should render color label of color item', async () => {
     const { instance, find } = await getShallowMock({ shallow });
-    const [resultColor] = DEFAULT_COLORS;
+    const [resultColor] = noteColors;
 
     instance.toggleColorMenu(eventMock);
 
