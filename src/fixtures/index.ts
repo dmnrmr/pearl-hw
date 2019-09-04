@@ -1,4 +1,4 @@
-import { NoteColor } from '../app/models';
+import { FormId, Note, NoteColor } from '../app/models';
 
 export const noteColors: NoteColor[] = [
   {
@@ -20,3 +20,18 @@ export const noteColors: NoteColor[] = [
     textColor: '#ffffff'
   }
 ];
+
+export const emptyNote: Note = {
+  backgroundColor: '#ffffff',
+  textColor: '#000000',
+  position: {
+    x: 0,
+    y: 0
+  }
+};
+
+export const note: Note = {
+  ...emptyNote,
+  [FormId.Title]: 'Foo',
+  [FormId.Content]: 'Bar'
+};
