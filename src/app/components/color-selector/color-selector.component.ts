@@ -50,6 +50,7 @@ export class ColorSelectorComponent implements OnInit, OnDestroy {
   public toggleColorMenu(event: MouseEvent): void {
     event.stopPropagation();
     this.isColorMenuVisible = !this.isColorMenuVisible;
+    this.cdr.detectChanges();
   }
 
   public onSelectNoteColor(color: NoteColor): void {
